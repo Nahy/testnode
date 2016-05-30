@@ -1,0 +1,269 @@
+/*******************************************/
+/*******************************************/
+/**************   COMMONS   ****************/
+/*******************************************/
+/*******************************************/
+html, body { height: 100%; overflow: hidden; }
+header, section, footer {
+  display: block; position: relative; width: 100%;
+
+  .inner { width: 1000px; margin: 0 auto; padding: 40px 0; }
+  a { font-family: 'Lato', sans-serif; text-decoration: none; outline: none; }
+  p { @include fs(14); font-family: 'Lato', sans-serif; line-height: 1.2em; }
+  h1 { @include fs(14); font-family: 'Lato', sans-serif; line-height: 1.2em; }
+  img {
+    display: block; width: 100%; @include opacity(0); @include transition(opacity, 0.25s, ease);
+
+    &.loaded { @include opacity(1); }
+  }
+}
+section {
+  min-height: calc(100% - 44px); position: absolute; top: 100px; left: 0; @include transition(all, 0.35s, ease); z-index: 5; @include opacity(0);
+
+  &.normal { top: 44px; z-index: 6; @include opacity(1); @include transition(all, 0.35s, ease); }
+  &.to_top { top: -100px; @include opacity(0); z-index: 5; }
+  &.hidden { top: 100px; z-index: 5; }
+}
+
+
+/*******************************************/
+/*******************************************/
+/***************   HEADER   ****************/
+/*******************************************/
+/*******************************************/
+header {
+  background-color: #000; z-index: 10;
+
+  .inner { padding: 10px 0; }
+
+  ul { text-align: center; }
+  li {
+    display: inline-block; vertical-align: top; margin-right: 10px; border-right: 1px solid #FFF; padding-right: 10px;
+
+    &:last-child { margin-right: 0; padding-right: 0; border-right: none; }
+  }
+  a {
+    color: #FFF; @include fs(12); text-transform: uppercase; @include transition(color, 0.25s, ease);
+
+    &.active, &:hover { color: #ff4f78; }
+  }
+}
+
+
+/*******************************************/
+/*******************************************/
+/************   SECTION HOME   *************/
+/*******************************************/
+/*******************************************/
+#section-home {
+  background: url('../../img/bck_home.jpg') no-repeat center top; @include background-size(cover);
+
+  .inner { padding: calc((935px / 2) / 2) 0; } // 200px 0
+
+  // BLOCKS
+  .line {
+    text-align: center; margin-bottom: 50px;
+
+    &:last-child { margin-bottom: 0; }
+  }
+  .bloc-home {
+    background-color: rgba(0,0,0,0.55); border: 1px solid #FFF; padding: 20px; @include transition(background-color, 0.25s, ease); width: 250px; height: 250px;
+
+    &:hover { background-color: rgba(0,0,0,0.75); }
+  }
+  .left, .right {
+    display: inline-block; vertical-align: top; position: relative;
+
+    h1 { position: absolute; bottom: 20px; @include fs(20); text-align: left; }
+  }
+  .left { margin-right: 175px; }
+
+  // TEXT
+  a { text-transform: uppercase; color: #FFF; }
+}
+
+
+/*******************************************/
+/*******************************************/
+/*********   SECTION TEMPS FORTS   *********/
+/*******************************************/
+/*******************************************/
+#section-temps-forts {
+  overflow: auto; height: 750px;
+
+  .grid { overflow: hidden; }
+  .grid-item {
+    position: relative; width: 320px; margin: 0 20px 20px 0; overflow: hidden; float: left;
+
+    &:nth-child(4), &:nth-child(5), &:nth-child(6) { margin-bottom: 0; }
+
+    img { max-width: 320px; }
+   }
+
+  .description {
+    background-color: #f3f1f0;
+
+    .inner-desc { padding: 20px; }
+
+    // TEXTS
+    .temp-fort {
+      color: #ff4f78;
+
+      sup { vertical-align: super; @include fs(9); }
+    }
+    .txt-desc { color: #6b6b6b; line-height: 1.2em; }
+  }
+  .overlay {
+    background-color: rgba(0,0,0,0.55); position: absolute; width: 320px; height: 400px; top: 0; left: 0; padding: 20px; @include transition(all, 0.25s, ease); @include opacity(0);
+
+    &.show { @include opacity(1); }
+
+    p { color: #FFF; font-style: italic; @include fs(18); }
+  }
+
+}
+
+
+/*******************************************/
+/*******************************************/
+/**********   SECTION VALEURS   ************/
+/*******************************************/
+/*******************************************/
+#section-valeurs {
+
+  // MENU CONTROLS
+  #slick-menu {
+    margin-bottom: 20px;
+
+    ul { text-align: center; }
+    li {
+      display: inline-block; vertical-align: top; margin-right: 40px;
+
+      &:last-child { margin-right: 0; }
+    }
+    a { color: #000; text-transform: uppercase; }
+  }
+
+  // MAIN SLIDER SLICK CSS
+  #slick-slider { @include user-select(text); }
+  .slick-slide { outline: none; }
+  .slick-list { padding-top: 75px; } // 50
+  .slick-dots {
+      width: 100%; text-align: center; margin-bottom: 20px; position: absolute; top: 0;
+      li {
+        display: inline; position: absolute; top: 0; left: 50%;
+
+        &:nth-child(1) { margin-left: -200px; }
+        &:nth-child(2) { margin-left: -85px; }
+        &:nth-child(3) { margin-left: 27px; }
+        &:nth-child(4) { margin-left: 150px; margin-right: 0; }
+      }
+      button {
+          position: relative; text-indent: -9999px; background: none; border: none; width: 20px; font-size: 0; cursor: pointer; outline: none;
+
+          &::before { content: ""; display: block;  }
+          &::after { content: ""; display: inline-block; height: 12px; width: 12px; border-radius: 50%; background-color: #dadada;  }
+      }
+  }
+  .slick-active button::after { background-color: #ff4f78; }
+
+  // MAIN SLIDER CONTENT CSS
+  .titles {
+    margin-bottom: 100px; text-align: center;
+
+    h1 { @include fs(80); font-weight: 100; }
+  }
+
+  .content-slider {
+    width: 835px; margin: 0 auto;
+
+    .left-part, .right-part {
+      display: inline-block; vertical-align: top;
+
+      .left, .right {
+        display: inline-block; vertical-align: top; width: 184px; height: 184px;
+
+        .inner { width: 100%; padding: 20px; height: 100%; }
+        .content-text { position: relative; top: 50%; @include transform(translateY(-50%)); }
+        h2 { font-family: 'Lato', sans-serif; margin-bottom: 10px; padding-bottom: 5px; position: relative; font-style: italic; text-transform: uppercase; @include fs(18); font-weight: 300; }
+        h2::after { content: ''; border-bottom: 1px solid #000; position: absolute; bottom: 0; left: 0; width: 144px; height: 1px; display: block; }
+        p { @include fs(15); }
+      }
+    }
+    .left-part {
+      margin-right: 32px;
+
+      .left { margin-right: 32px; }
+    }
+    .right-part .left {
+      margin-right: 32px;
+    }
+
+    .line2 {
+      margin-top: 30px;
+    }
+  }
+
+}
+
+/*******************************************/
+/*******************************************/
+/******   SECTION RECOMMANDATIONS   ********/
+/*******************************************/
+/*******************************************/
+#section-recommandations {
+  overflow: auto; height: 750px;
+
+  .inner { background-color: rgba(0,0,0,0.55); }
+
+  .bloc-recommandation {
+    margin-bottom: 90px;
+
+    &:last-child { margin-bottom: 0; }
+
+    .inner-recommandation { height: 100%; }
+
+    .left, .right { display: inline-block; vertical-align: top; padding: 20px; height: 100%; }
+    .left {
+      background-color: #FFF;
+      h3 { text-align: right; text-transform: uppercase; }
+    }
+    .right {
+      color: #FFF;
+
+      p { font-weight: 200; }
+      .regular { font-weight: 400; }
+    }
+  }
+  .bloc-emailings {
+    height: 227px; width: 780px; margin-left: 50px;
+
+    .left { width: 240px; }
+    .right {
+      width: calc(100% - 240px); background-color: #eb6d82;
+
+      h4 {  }
+    }
+  }
+  .bloc-display-performance {
+    height: 248px; width: 573px; margin: 0 172px 90px auto;
+
+    .left { width: 214px; }
+    .right {
+      width: calc(100% - 214px); background-color: #31b7b8;
+
+      h4 {  }
+    }
+  }
+  .bloc-display-notoriete {
+    height: 314px; width: 929px; margin-left: 50px;
+
+    .left { width: 415px; }
+    .right {
+      width: calc(100% - 415px); background-color: #e4796c;
+
+      h4 {  }
+    }
+  }
+
+}
